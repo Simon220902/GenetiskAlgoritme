@@ -1,12 +1,53 @@
 <html>
-  <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-	<script src="sketch.js"></script>
-	<script src="genes.js"></script>
-  </head>
-  <body>
-    <h1>Simons seje side!</h1>
-    <main>
-    </main>
-  </body>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+  <script src="sketch.js"></script>
+  <script src="genes.js"></script>
+</head>
+
+<body>
+  <h1>Genetisk algoritme til optimal pakning</h1>
+  <p>Jeg har fået 4 max mutationer og en generationsstørrelse på 100 til at virke optimalt. Nogle gange kan man være
+    heldig med mindre værdier, men denne konstalation er relativt stabil.</p>
+  <h4>Tryk på "start genetisk algoritme" knappen for at starte og pause for at pause.</h4>
+  <h4>Hvis du vil ændre på mutations og generationsstørrelse værdierne kan du gøre det i tekstfelterne bare husk at trykke på "start ny simulering bagefter"</h4>
+  <div id="s"></div>
+  <input type="button" value="Start gentisk algoritme" onclick="runGenerations=true;">
+  <input type="button" value="Pause gentisk algoritme" onclick="runGenerations=false;">
+  <p>Max mutationer pr. gang:</p>
+  <input type="text" id="mutations" value="4">
+  <p>Generations størrelse:</p>
+  <input type="text" id="generationSize" value="100">
+  <input type="button" value="Start ny simulering" onclick="startNew();">
+
+  <h3>Hurtig undskyldning</h3>
+  <p width="50%">Hej, John. Jeg har haft super travlt med en masse opgaver og har derfor ikke rigtig haft så god tid til
+    at nørde på dette projekt. Det er også derfor at jeg ikke har fået tilføjet en mulighed for at ændre på tingene man
+    kan tage med. Nok selvmedlidenhed.</p>
+  <h3>Nu til en ordentlig forklaring</h3>
+  <p>Måden min løsning fungerer på er.</p>
+  <ul>
+    <li>Genet er en liste af boolean værdier, der svarer til tingene på listen.</li>
+    <li>Vægten beregnes for at vurdere om den skal dræbes.</li>
+    <li>Værdien udregnes for at kunne bruges til at danne vores parringsbassin.</li>
+    <li>Vores parringbassin består af den øverste halvdel af ikke døde.</li>
+    <li>Næste generation laves, hvor tilfældige fra denne pulje krydses over.</li>
+    <ul>
+      <li>Hvilket fungerer ved at der er 50% chance for hvilken af de to gener, der bruges for hver bool svarende til en
+        ting.</li>
+      <li>Dette gøres til man har den nye befolkning på samme størrelse som den nuværende.</li>
+    </ul>
+    <li>Derefter muteres, der hvilket gøres ud fra muteringsgraden max mutationer.</li>
+    <ul>
+      <li>Denne betyder bare hvor mange, der max kan forekomme, der forekommer rent faktisk imellem 0 og denne værdi for
+        hver nyt gen i den nye befolkning</li>
+      <li>Muteringerne sker på et tilfældigt gen.</li>
+    </ul>
+    <li>Dette gentages, hvor de gamle generationer lagres, men hvor man husker den bedste for hver generation og
+      gennemsnittet.</li>
+  </ul>
+
+</body>
+
 </html>

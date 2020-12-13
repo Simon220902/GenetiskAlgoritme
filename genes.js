@@ -36,7 +36,7 @@ class Population{
 		this.maxMutations = maxMutations_;
 		//STATS
 		this.avgValue = 0;
-		this.highestValue = 0;
+		this.bestDNA;
 		this.population.forEach(dna => {
 			dna.calculateWeightAndValue();
 		});
@@ -72,8 +72,8 @@ class Population{
 
 			matingPool.sort((dna1, dna2) => dna2.value - dna1.value);
 			
-			//Get the highest value, which will be the first one in the list.
-			this.highestValue = matingPool[0].value;
+			//Get the DNA with the highest value, which will be the first one in the list.
+			this.bestDNA = matingPool[0];
 
 			//Choose top 33%
 
